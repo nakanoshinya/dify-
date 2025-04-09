@@ -11,7 +11,7 @@ creds_dict = json.loads(cred_json)
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
-sheet = client.open("Dify情報自動").sheet1
+sheet = client.open("dify情報自動").sheet1
 
 # --- RSSフィード一覧 ---
 rss_urls = [
