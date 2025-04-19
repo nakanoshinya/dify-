@@ -1,6 +1,7 @@
 import os
 import feedparser
 import gspread
+import requests
 from oauth2client.service_account import ServiceAccountCredentials
 import json
 
@@ -27,12 +28,26 @@ existing_urls = [row[0] for row in rows[1:] if row and len(row) > 0]  # A列のU
 # --- 新しいURLを取得して追加 ---
 new_urls = []
 
+def resolve_redirect_url(url):
+    """Google Newsの中継URLを解決し、本物のURLを返す"""
+    try:
+        r = requests.get(url, timeout=5, allow_redirects=True)
+        if r.status_code == 200:
+            return r.url
+    except Exception:
+        pass
+    return url  # 解決できなかったら元URLのまま返す
+
 for rss_url in rss_urls:
     feed = feedparser.parse(rss_url)
     for entry in feed.entries:
         url = entry.link
+
+        # Google News の場合はリダイレクト解決
+        if "news.google.com" in url:
+            url = resolve_redirect_url(url)
+
         if url not in existing_urls:
-            # A列にURLを追加（他の列は空欄で構わない）
             row = [url, "", "", "", "", "", ""]
             new_urls.append(row)
 
