@@ -15,7 +15,6 @@ client = gspread.authorize(creds)
 sheet = client.open("dify情報自動").sheet1
 
 # --- RSSフィード一覧 ---
-rss_urls = [
     rss_urls = [
     "https://the-decoder.com/feed/",
     "https://techcrunch.com/tag/generative-ai/feed/",
