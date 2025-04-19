@@ -15,11 +15,11 @@ client = gspread.authorize(creds)
 sheet = client.open("dify情報自動").sheet1
 
 # --- RSSフィード一覧 ---
-    rss_urls = [
+rss_urls = [
     "https://the-decoder.com/feed/",
     "https://techcrunch.com/tag/generative-ai/feed/",
     "https://www.itmedia.co.jp/news/rss2/all.xml",
-    "https://www.nikkei.com/rss/tech.rdf",
+    "https://www.nikkei.com/rss/tech.rdf"
 ]
 
 # --- 既存URLを取得 ---
