@@ -16,9 +16,11 @@ sheet = client.open("dify情報自動").sheet1
 
 # --- RSSフィード一覧 ---
 rss_urls = [
-    "https://news.google.com/rss/search?q=生成AI&hl=ja&gl=JP&ceid=JP:ja",
+    rss_urls = [
     "https://the-decoder.com/feed/",
-    "https://techcrunch.com/tag/generative-ai/feed/"
+    "https://techcrunch.com/tag/generative-ai/feed/",
+    "https://www.itmedia.co.jp/news/rss2/all.xml",
+    "https://www.nikkei.com/rss/tech.rdf",
 ]
 
 # --- 既存URLを取得 ---
